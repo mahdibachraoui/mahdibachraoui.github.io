@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mahdi Bachraoui · Freelance Mechanical Design · SolidWorks &amp; 2D Drawings</title>
+<meta name="description" content="Freelance mechanical design engineer (CSWP). I turn sketches, old drawings and rough models into SolidWorks parts and 2D drawings a workshop can quote and make. Fixed quote within 24 hours.">
+<meta name="author" content="Mahdi Bachraoui">
+<link rel="canonical" href="https://mahdibachraoui.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2315191d'/%3E%3Ctext x='32' y='43' font-family='Arial Narrow,Arial,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23fff'%3EMB%3C/text%3E%3Crect x='10' y='50' width='44' height='4' fill='%23c8322b'/%3E%3C/svg%3E">
+<meta property="og:title" content="Mahdi Bachraoui · Freelance Mechanical Design">
+<meta property="og:description" content="SolidWorks models and shop-ready 2D drawings with ISO GPS tolerancing. Send a sketch or an old drawing, get a fixed quote within 24 hours.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahdibachraoui.github.io/">
+<meta property="og:image" content="https://mahdibachraoui.github.io/og_preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a drawing register. Paper ground, ink type, one redline accent for revisions; each project is a sheet with a before/after slider. */
+:root{
+  --paper:#f3f4f2; --sheet:#ffffff; --ink:#15191d; --muted:#5b636b; --rule:#c9cdd0;
+  --red:#c8322b; --redsoft:#f6dfdc; --ok:#2f7a4f; --warn:#b5781a;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --img-bg:#ffffff;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#13171a; --sheet:#1b2024; --ink:#e7eaec; --muted:#9aa3aa; --rule:#323a40;
+  --red:#ef6a5f; --redsoft:#3a201e; --ok:#5fbf88; --warn:#e0a643; --img-bg:#f4f4f2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#13171a; --sheet:#1b2024; --ink:#e7eaec; --muted:#9aa3aa; --rule:#323a40;
+  --red:#ef6a5f; --redsoft:#3a201e; --ok:#5fbf88; --warn:#e0a643; --img-bg:#f4f4f2; color-scheme:dark}
+
+:root[data-lang="en"] [lang="it"], :root[data-lang="it"] [lang="en"]{display:none!important}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--f-body)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.05;text-wrap:balance;margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.label{font:500 12px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* top bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px}
+.bar .id{font:500 13px/1 var(--f-mono);letter-spacing:.04em}
+.bar nav{display:flex;gap:18px;flex-wrap:wrap}
+.bar nav a{font:500 13px/1 var(--f-body);text-decoration:none;color:var(--muted)}
+.bar nav a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--ink);border-radius:3px;overflow:hidden;flex:none}
+.lang button{font:500 12px/1 var(--f-mono);padding:7px 10px;border:0;background:transparent;color:var(--ink);cursor:pointer;letter-spacing:.06em}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media (max-width:760px){.bar nav{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center;padding-block:56px 40px}
+.hero h1{font-size:clamp(48px,8vw,96px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase}
+.hero .role{font:500 clamp(18px,2.2vw,22px)/1.35 var(--f-body);margin:18px 0 0;max-width:34ch}
+.hero p.lede{color:var(--muted);max-width:58ch;margin:16px 0 0}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink);margin-top:32px}
+.facts div{padding:12px 12px 0 0}
+.facts b{display:block;font:600 30px/1 var(--f-display)}
+.facts span{font-size:13px;color:var(--muted);line-height:1.35;display:block;margin-top:4px}
+.hero figure{margin:0;background:var(--img-bg);border:1px solid var(--rule);padding:14px;position:relative}
+.hero figure img{display:block;width:100%;height:auto}
+.hero figcaption{font:400 12px/1.4 var(--f-mono);color:#5b636b;margin-top:8px}
+@media (max-width:860px){.hero{grid-template-columns:minmax(0,1fr);gap:32px;padding-block:32px}.hero figure{max-width:440px}}
+
+/* sections */
+section{padding-block:56px;border-top:1px solid var(--rule)}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.sec-head h2{font-size:clamp(32px,4.5vw,46px);text-transform:uppercase}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.about p{margin:0 0 14px;max-width:62ch}
+dl.cv{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 18px;font-size:15px}
+dl.cv dt{font:500 12px/1.6 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:1px}
+dl.cv dd{margin:0}
+@media (max-width:760px){.about{grid-template-columns:minmax(0,1fr)}}
+
+/* register table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--ink);background:var(--sheet)}
+table.reg{border-collapse:collapse;width:100%;min-width:680px;font-size:14px}
+.reg th,.reg td{border:1px solid var(--rule);padding:9px 12px;text-align:left;vertical-align:top}
+.reg th{font:500 11px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+.reg td.mono{white-space:nowrap}
+.reg a{text-decoration:none;border-bottom:1px solid var(--rule)}
+.reg a:hover{border-color:var(--red)}
+.rev{display:inline-block;font:500 12px/1 var(--f-mono);padding:3px 6px;border:1px solid currentColor;border-radius:2px}
+.rev.new{color:var(--red)}
+
+/* project */
+.proj{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:40px;align-items:start}
+.proj + .proj{margin-top:0}
+.proj-head{grid-column:1/-1;display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.proj-head h3{font-size:clamp(30px,4vw,42px);text-transform:uppercase}
+.proj-head .mono{font-size:14px;color:var(--red)}
+.ctx{font-size:14px;color:var(--muted);grid-column:1/-1;margin-top:-28px}
+.text h4{font:500 12px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.text p{margin:0 0 18px}
+.text ul{margin:0 0 20px;padding:0;list-style:none;display:grid;gap:8px}
+.text li{padding-left:18px;position:relative;font-size:15px;line-height:1.5}
+.text li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:400 12px/1 var(--f-mono);padding:6px 8px;border:1px solid var(--rule);background:var(--sheet);border-radius:2px}
+.calc{border-top:2px solid var(--ink);margin:0 0 20px}
+.calc div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--rule);padding:7px 0;font-size:14px}
+.calc span:last-child{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+@media (max-width:900px){.proj{grid-template-columns:minmax(0,1fr);gap:24px}.ctx{margin-top:-12px}}
+
+/* before / after */
+.ba{position:relative;background:var(--img-bg);border:1px solid var(--rule);aspect-ratio:2000/1414;max-width:100%;overflow:hidden;user-select:none;touch-action:pan-y}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;pointer-events:none}
+.ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:var(--red);transform:translateX(-1px);pointer-events:none}
+.ba .handle::after{content:"";position:absolute;top:50%;left:50%;width:30px;height:30px;transform:translate(-50%,-50%);border-radius:50%;background:var(--red);box-shadow:0 0 0 3px #fff}
+.ba .tag{position:absolute;top:10px;font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;background:#15191d;color:#fff;pointer-events:none}
+.ba .tag.l{left:10px}.ba .tag.r{right:10px;background:#c8322b}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:13px;color:var(--muted)}
+.sheet{background:var(--img-bg);border:1px solid var(--rule);display:block}
+.sheet img{display:block;width:100%;height:auto}
+.sheets2{display:grid;gap:12px}
+
+/* dfmea bars */
+.ap{display:grid;gap:14px;margin:0 0 20px}
+.ap .row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center;font-size:13px}
+.ap .bar13{display:flex;height:22px;border:1px solid var(--rule)}
+.ap .bar13 i{display:block;height:100%}
+.ap .H{background:var(--red)}.ap .M{background:var(--warn)}.ap .L{background:var(--ok)}
+.ap .legend{display:flex;gap:14px;font:400 12px/1 var(--f-mono);color:var(--muted);flex-wrap:wrap}
+.ap .legend span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.ap .legend .h::before{background:var(--red)}.ap .legend .m::before{background:var(--warn)}.ap .legend .l::before{background:var(--ok)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:start}
+.contact h2{font-size:clamp(36px,5vw,56px);text-transform:uppercase}
+.contact p{max-width:52ch;color:var(--muted)}
+.cline{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--rule);padding:14px 0;flex-wrap:wrap}
+.cline .v{font:500 17px/1.3 var(--f-mono);user-select:all;overflow-wrap:anywhere;min-width:0}
+.copy{font:500 12px/1 var(--f-mono);padding:8px 10px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;border-radius:2px;letter-spacing:.06em}
+.copy:hover{background:var(--ink);color:var(--paper)}
+@media (max-width:760px){.contact{grid-template-columns:minmax(0,1fr)}}
+footer{padding-block:28px 40px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.copy,.lang button{transition:background .15s,color .15s}}
+.dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.dl a{font:500 13px/1 var(--f-mono);letter-spacing:.04em;padding:11px 14px;border:1px solid var(--ink);border-radius:2px;text-decoration:none;color:var(--ink)}
+.dl a.pri{background:var(--red);border-color:var(--red);color:#fff}
+.dl a:hover{background:var(--ink);color:var(--paper)}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--ink);background:var(--sheet)}
+.svc > div{padding:20px 22px;border-right:1px solid var(--rule)}
+.svc > div:last-child{border-right:0}
+.svc h3{font:500 12px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin:0 0 12px}
+.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px;line-height:1.5}
+.svc li{padding-left:18px;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--ink)}
+.terms{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:18px;font-size:14px;color:var(--muted)}
+.terms b{color:var(--ink);font-weight:600}
+@media (max-width:760px){.svc{grid-template-columns:minmax(0,1fr)}.svc > div{border-right:0;border-bottom:1px solid var(--rule)}.svc > div:last-child{border-bottom:0}}
+.note{font-size:13px;color:var(--muted);margin:12px 0 0;max-width:90ch}
+.ask{margin:24px 0 0;font-size:14px}
+.ask a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--red)}
+.ask a:hover{color:var(--red)}
+.cline a.v{text-decoration:none}
+.cline a.v:hover{color:var(--red)}
+/* sheet viewer */
+.sheet,.ba-note a[data-zoom]{cursor:zoom-in}
+dialog.zoom{border:0;padding:0;margin:0;width:100vw;height:100dvh;max-width:none;max-height:none;background:#0f1215}
+dialog.zoom::backdrop{background:#0f1215}
+dialog.zoom .pane{width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;display:flex}
+dialog.zoom img{display:block;margin:auto;max-width:100%;max-height:100%;background:#fff;cursor:zoom-in;flex:none}
+dialog.zoom.big img{max-width:none;max-height:none;width:2000px;cursor:zoom-out}
+dialog.zoom .x{position:fixed;top:max(12px,env(safe-area-inset-top,0px));right:12px;font:500 13px/1 var(--f-mono);padding:10px 12px;border:1px solid #fff;background:#15191d;color:#fff;border-radius:2px;cursor:pointer;letter-spacing:.06em}
+dialog.zoom .hint{position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom,0px));font:400 12px/1 var(--f-mono);color:#fff;background:#15191d;padding:8px 10px;pointer-events:none}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="id">M. BACHRAOUI · MB-001…008</span>
+    <nav aria-label="Sections">
+      <a href="#services"><span lang="en">Services</span><span lang="it">Servizi</span></a>
+      <a href="#mb-003"><span lang="en">Work</span><span lang="it">Lavori</span></a>
+      <a href="#register"><span lang="en">Drawing register</span><span lang="it">Elenco tavole</span></a>
+      <a href="#about"><span lang="en">About</span><span lang="it">Profilo</span></a>
+      <a href="Mahdi_Bachraoui_CV.pdf" target="_blank" rel="noopener">CV</a>
+      <a href="#contact" style="color:var(--red);font-weight:600"><span lang="en">Get a quote</span><span lang="it">Chiedi un preventivo</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-en" data-l="en" aria-pressed="true">EN</button>
+      <button type="button" id="btn-it" data-l="it" aria-pressed="false">IT</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <div class="label"><span lang="en">Freelance mechanical design engineer · Italy · remote</span><span lang="it">Progettista meccanico freelance · Italia · da remoto</span></div>
+      <h1>Mahdi<br>Bachraoui</h1>
+      <p class="role"><span lang="en">I turn sketches, old drawings and rough models into SolidWorks parts and 2D drawings a workshop can quote and make.</span><span lang="it">Trasformo schizzi, vecchi disegni e modelli grezzi in parti SolidWorks e disegni 2D che un’officina può quotare e produrre.</span></p>
+      <p class="lede"><span lang="en">Send me what you have and I reply with a fixed quote within 24 hours. Below are nine of my sheets; drag the red line on a sheet to compare the original with my revision.</span><span lang="it">Mandami quello che hai e rispondo con un preventivo fisso entro 24 ore. Qui sotto trovi nove mie tavole; trascina la linea rossa su una tavola per confrontare l’originale con la mia revisione.</span></p>
+      <div class="facts">
+        <div><b>CSWP</b><span>Certified SolidWorks Professional</span></div>
+        <div><b>−73 %</b><span lang="en">mass on a motor bracket, redesigned from a block to bent sheet</span><span lang="it">di massa su una staffa motore, riprogettata da blocco a lamiera piegata</span></div>
+        <div><b>100+</b><span lang="en">engineering changes released on AUDI harness drawings</span><span lang="it">modifiche tecniche rilasciate su disegni di cablaggi AUDI</span></div>
+      </div>
+      <div class="dl">
+        <a class="pri" href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached."><span lang="en">Send me your drawing</span><span lang="it">Mandami il tuo disegno</span></a>
+        <a href="#mb-003"><span lang="en">See the work</span><span lang="it">Guarda i lavori</span></a>
+        <a href="Mahdi_Bachraoui_Portfolio_EN.pdf" download lang="en">Portfolio (PDF)</a><a href="Mahdi_Bachraoui_Portfolio_IT.pdf" download lang="it">Portfolio (PDF)</a>
+        <a href="Mahdi_Bachraoui_CV.pdf" target="_blank" rel="noopener">CV</a>
+      </div>
+    </div>
+    <figure style="background:#15191d;border:0;padding:0"><img src="hero_gears.jpg" alt="Technical illustration of a three-gear train with pitch circles and centre lines" width="1760" height="2160" style="display:block;width:100%;height:auto"></figure>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head"><h2><span lang="en">What I do</span><span lang="it">Cosa faccio</span></h2><span class="label"><span lang="en">From what you have to what a workshop needs</span><span lang="it">Da quello che hai a quello che serve all’officina</span></span></div>
+    <div class="svc">
+      <div><h3><span lang="en">You send</span><span lang="it">Tu mandi</span></h3><ul>
+        <li><span lang="en">A hand sketch or photo with dimensions</span><span lang="it">Uno schizzo a mano o una foto con le quote</span></li><li><span lang="en">An old or scanned 2D drawing</span><span lang="it">Un vecchio disegno 2D, anche scansionato</span></li><li><span lang="en">A rough 3D model or STEP file</span><span lang="it">Un modello 3D grezzo o un file STEP</span></li><li><span lang="en">A drawing you want checked before it goes out</span><span lang="it">Un disegno da controllare prima dell’invio</span></li>
+      </ul></div>
+      <div><h3><span lang="en">I do</span><span lang="it">Io faccio</span></h3><ul>
+        <li><span lang="en">3D modelling in SolidWorks: parts, assemblies, sheet metal</span><span lang="it">Modellazione 3D in SolidWorks: parti, assiemi, lamiera</span></li><li><span lang="en">2D production drawings to ISO, with GD&amp;T</span><span lang="it">Disegni costruttivi 2D a norma ISO, con GD&amp;T</span></li><li><span lang="en">Manufacturability review and material selection</span><span lang="it">Verifica di producibilità e scelta dei materiali</span></li><li><span lang="en">Tolerance stack-ups, DFMEA, stress checks in SolidWorks Simulation</span><span lang="it">Catene di tolleranze, DFMEA, verifiche di resistenza in SolidWorks Simulation</span></li>
+      </ul></div>
+      <div><h3><span lang="en">You get</span><span lang="it">Tu ricevi</span></h3><ul>
+        <li><span lang="en">Native SolidWorks files plus STEP</span><span lang="it">File nativi SolidWorks più STEP</span></li><li><span lang="en">PDF drawings ready to send for quotation</span><span lang="it">Disegni PDF pronti per la richiesta di offerta</span></li><li><span lang="en">DXF flat patterns and bend tables for sheet metal</span><span lang="it">Sviluppi DXF e tabelle pieghe per la lamiera</span></li><li><span lang="en">A short note on every design decision I made</span><span lang="it">Una breve nota su ogni scelta di progetto</span></li>
+      </ul></div>
+    </div>
+    <div class="terms"><span><span lang="en"><b>Fixed quote</b> within 24 hours</span><span lang="it"><b>Preventivo fisso</b> entro 24 ore</span></span><span><span lang="en"><b>Remote</b>, from Italy (CET)</span><span lang="it"><b>Da remoto</b>, dall’Italia (CET)</span></span><span><span lang="en"><b>English, French, Arabic</b></span><span lang="it"><b>Inglese, francese, arabo</b></span></span></div>
+    <div class="dl"><a class="pri" href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached."><span lang="en">Send me your drawing</span><span lang="it">Mandami il tuo disegno</span></a></div>
+  </div>
+</section>
+
+<section id="mb-003">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-003 · Rev A</span><h3><span lang="en">Motor support</span><span lang="it">Supporto motore</span></h3></div>
+    <p class="ctx"><span lang="en">Bracket carrying two motors in salt-water spray. The original could not be made as drawn; the revision is a laser-cut, bent part a sheet-metal shop can quote.</span><span lang="it">Staffa che porta due motori in presenza di spruzzi di acqua salata. L’originale non era producibile così com’era disegnato; la revisione è un pezzo tagliato al laser e piegato che una carpenteria può quotare.</span></p>
+    <div>
+      <div class="ba" data-ba>
+        <img src="before_mb003.jpg" alt="MB-003 Rev 0 original design" loading="lazy">
+        <img class="after" src="mb003.jpg" alt="MB-003 Rev A sheet-metal drawing" loading="lazy">
+        <span class="handle"></span><span class="tag l">Rev 0</span><span class="tag r">Rev A</span>
+        <input type="range" id="ba-003" min="0" max="100" value="50" aria-label="Compare before and after">
+      </div>
+      <div class="ba-note"><span lang="en">Drag to compare</span><span lang="it">Trascina per confrontare</span><a href="mb003.jpg" data-zoom target="_blank" rel="noopener"><span lang="en">Open full sheet</span><span lang="it">Apri la tavola intera</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">Problem</span><span lang="it">Problema</span></h4>
+      <p><span lang="en">The original was drawn as a 16.6 mm block with rolled curls. It could not be cut and bent, and pure aluminium 1060 is a poor choice near seawater.</span><span lang="it">L’originale era disegnato come un blocco da 16,6 mm con riccioli arrotolati. Non si poteva tagliare e piegare, e l’alluminio puro 1060 è una scelta debole vicino all’acqua di mare.</span></p>
+      <h4><span lang="en">What changed</span><span lang="it">Cosa è cambiato</span></h4>
+      <ul>
+        <li><span lang="en"><b>Mass down from about 3.07 kg to 0.84 kg (−73 %).</b></span><span lang="it"><b>Massa ridotta da circa 3,07 kg a 0,84 kg (−73 %).</b></span></li>
+        <li><span lang="en">Redesigned as 5 mm EN AW-5754-H22 sheet: laser cut, three press-brake bends at R8.</span><span lang="it">Riprogettato in lamiera EN AW-5754-H22 da 5 mm: taglio laser, tre pieghe a pressa con R8.</span></li>
+        <li><span lang="en">Flat pattern (K = 0.40), bend table with sequence, rolling direction across the bends.</span><span lang="it">Sviluppo in piano (K = 0,40), tabella pieghe con sequenza, direzione di laminazione trasversale alle pieghe.</span></li>
+        <li><span lang="en">Ø25 H7 reamed after bending; datums A–E for both motor plates.</span><span lang="it">Ø25 H7 alesato dopo la piegatura; riferimenti A–E per entrambe le piastre motore.</span></li>
+        <li><span lang="en">Anodised AA 15 sealed, A4-70 fasteners with insulating washers against galvanic corrosion.</span><span lang="it">Anodizzazione AA 15 fissata, viteria A4-70 con rondelle isolanti contro la corrosione galvanica.</span></li>
+      </ul>
+      <div class="chips"><span class="chip">sheet metal</span><span class="chip">EN 485-2</span><span class="chip">EN ISO 7599</span><span class="chip">ISO 3506-1</span><span class="chip">corrosion</span></div>
+      <p class="ask"><a href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached."><span lang="en">Have a part like this? Send it over →</span><span lang="it">Hai un pezzo simile? Mandamelo →</span></a></p>
+    </div>
+  </div>
+</section>
+
+<section id="register">
+  <div class="wrap">
+    <div class="sec-head"><h2><span lang="en">Drawing register</span><span lang="it">Elenco tavole</span></h2><span class="label">A3 sheets · first-angle projection</span></div>
+    <div class="tbl-wrap">
+      <table class="reg">
+        <thead><tr><th>No.</th><th><span lang="en">Title</span><span lang="it">Titolo</span></th><th>Rev</th><th><span lang="en">Type</span><span lang="it">Tipo</span></th><th><span lang="en">Material</span><span lang="it">Materiale</span></th><th><span lang="en">Origin</span><span lang="it">Origine</span></th></tr></thead>
+        <tbody>
+          <tr><td class="mono">MB-003</td><td><a href="#mb-003"><span lang="en">Motor support</span><span lang="it">Supporto motore</span></a></td><td><span class="rev new">A</span></td><td><span lang="en">Part, laser cut + bent</span><span lang="it">Particolare, taglio laser + piega</span></td><td class="mono">EN AW-5754-H22</td><td>STEG / ENIM</td></tr>
+          <tr><td class="mono">MB-005</td><td><a href="#mb-005"><span lang="en">Vertical axis assembly</span><span lang="it">Gruppo asse verticale</span></a></td><td><span class="rev new">A</span></td><td><span lang="en">Assembly, 18 items</span><span lang="it">Complessivo, 18 posizioni</span></td><td class="mono"><span lang="en">see parts list</span><span lang="it">vedi distinta</span></td><td>STEG / ENIM</td></tr>
+          <tr><td class="mono">MB-004</td><td><a href="#mb-004"><span lang="en">Nozzle carriage</span><span lang="it">Carrello portaugello</span></a></td><td><span class="rev new">B</span></td><td><span lang="en">Part, milled</span><span lang="it">Particolare, fresato</span></td><td class="mono">EN AW-5083-H111</td><td>STEG / ENIM</td></tr>
+          <tr><td class="mono">MB-006</td><td><a href="#mb-006"><span lang="en">Vertical axis DFMEA</span><span lang="it">DFMEA asse verticale</span></a></td><td><span class="rev new">A</span></td><td><span lang="en">Design FMEA, 2 sheets</span><span lang="it">FMEA di progetto, 2 fogli</span></td><td class="mono">–</td><td>STEG / ENIM</td></tr>
+          <tr><td class="mono">MB-007</td><td><a href="#mb-007"><span lang="en">Tolerance stack-up</span><span lang="it">Catene di tolleranze</span></a></td><td><span class="rev new">A</span></td><td><span lang="en">Calculation sheet</span><span lang="it">Foglio di calcolo</span></td><td class="mono">–</td><td>STEG / ENIM</td></tr>
+          <tr><td class="mono">MB-005-02</td><td><a href="#mb-005-02"><span lang="en">Rotating nut</span><span lang="it">Madrevite rotante</span></a></td><td><span class="rev new">A</span></td><td><span lang="en">Part, turned</span><span lang="it">Particolare, tornito</span></td><td class="mono">CuSn12-C-GC</td><td>STEG / ENIM</td></tr>
+          <tr><td class="mono">MB-002</td><td><a href="#mb-002"><span lang="en">Bearing housing</span><span lang="it">Supporto cuscinetto</span></a></td><td><span class="rev new">A</span></td><td><span lang="en">Part, milled</span><span lang="it">Particolare, fresato</span></td><td class="mono">EN AW-6082-T6</td><td><span lang="en">Personal project</span><span lang="it">Progetto personale</span></td></tr>
+          <tr><td class="mono">MB-001</td><td><a href="#mb-001"><span lang="en">Gear shaft</span><span lang="it">Albero dentato</span></a></td><td><span class="rev new">A</span></td><td><span lang="en">Part, turned + hobbed</span><span lang="it">Particolare, tornito + dentato</span></td><td class="mono">16MnCr5</td><td><span lang="en">Personal project</span><span lang="it">Progetto personale</span></td></tr>
+          <tr><td class="mono">MB-008</td><td><a href="#mb-008"><span lang="en">Door harness</span><span lang="it">Cablaggio porta</span></a></td><td><span class="rev new">B</span></td><td><span lang="en">Harness drawing</span><span lang="it">Disegno cablaggio</span></td><td class="mono">–</td><td><span lang="en">Personal project</span><span lang="it">Progetto personale</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><span lang="en">MB-003 to MB-007 are design studies built on my final-year project: drawn and calculated, not yet built or tested. MB-001, MB-002 and MB-008 are personal projects.</span><span lang="it">Le tavole da MB-003 a MB-007 sono studi di progetto basati sul mio progetto di fine studi: disegnati e calcolati, non ancora costruiti né provati. MB-001, MB-002 e MB-008 sono progetti personali.</span></p>
+  </div>
+</section>
+
+<section id="mb-005">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-005 · Rev A</span><h3><span lang="en">Vertical axis assembly</span><span lang="it">Gruppo asse verticale</span></h3></div>
+    <p class="ctx"><span lang="en">Moves a 250 bar flat-jet nozzle 8.5 m up and down the basin wall. Redesigned from the DFMEA findings.</span><span lang="it">Muove un ugello a getto piatto da 250 bar per 8,5 m lungo la parete della vasca. Riprogettato a partire dai risultati della DFMEA.</span></p>
+    <div>
+      <a class="sheet" href="mb005.jpg" target="_blank" rel="noopener"><img src="mb005.jpg" alt="MB-005 vertical axis assembly drawing with section A-A and parts list" loading="lazy" width="2000" height="1414"></a>
+      <div class="ba-note"><span lang="en">General arrangement, section A-A, 18-item parts list (ISO 7573)</span><span lang="it">Complessivo, sezione A-A, distinta di 18 posizioni (ISO 7573)</span><a href="mb005.jpg" data-zoom target="_blank" rel="noopener"><span lang="en">Open full sheet</span><span lang="it">Apri la tavola intera</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">The key decision</span><span lang="it">La scelta chiave</span></h4>
+      <p><span lang="en">An 8.5 m Tr 52 screw turning at 750 rpm would run far above its first critical speed (about 25 rpm). So the screw stays still, hung from the top and pre-tensioned to 4 kN, and the nut turns instead, driven by a belt from the servo.</span><span lang="it">Una vite Tr 52 lunga 8,5 m che gira a 750 giri/min lavorerebbe ben oltre la sua prima velocità critica (circa 25 giri/min). Per questo la vite resta ferma, appesa in alto e pretensionata a 4 kN, e a girare è la madrevite, mossa da una cinghia dal servomotore.</span></p>
+      <div class="calc">
+        <div><span lang="en">Stroke</span><span lang="it">Corsa</span><span>8 500 mm</span></div>
+        <div><span lang="en">Vertical speed</span><span lang="it">Velocità verticale</span><span>0.1 m/s</span></div>
+        <div><span lang="en">Nut speed / belt</span><span lang="it">Madrevite / cinghia</span><span>750 rpm · HTD 5M 2:1</span></div>
+        <div><span lang="en">Jet reaction to wall</span><span lang="it">Reazione del getto</span><span>~950 N</span></div>
+        <div><span lang="en">Nozzle stand-off</span><span lang="it">Distanza ugello</span><span>53 mm</span></div>
+      </div>
+      <div class="chips"><span class="chip">critical speed</span><span class="chip">Euler buckling</span><span class="chip">self-locking</span><span class="chip">pv check</span><span class="chip">ISO 7573</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="mb-004">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-004 · Rev B</span><h3><span lang="en">Nozzle carriage</span><span lang="it">Carrello portaugello</span></h3></div>
+    <p class="ctx"><span lang="en">Item 1 of MB-005. Started life as a 9.1 kg bronze nozzle-holder nut.</span><span lang="it">Posizione 1 di MB-005. In origine era una madrevite portaugello in bronzo da 9,1 kg.</span></p>
+    <div>
+      <div class="ba" data-ba>
+        <img src="before_mb004.jpg" alt="MB-004 Rev 0 bronze nozzle-holder nut" loading="lazy">
+        <img class="after" src="mb004.jpg" alt="MB-004 Rev B nozzle carriage drawing" loading="lazy">
+        <span class="handle"></span><span class="tag l">Rev 0</span><span class="tag r">Rev B</span>
+        <input type="range" id="ba-004" min="0" max="100" value="50" aria-label="Compare before and after">
+      </div>
+      <div class="ba-note"><span lang="en">Drag to compare</span><span lang="it">Trascina per confrontare</span><a href="mb004.jpg" data-zoom target="_blank" rel="noopener"><span lang="en">Open full sheet</span><span lang="it">Apri la tavola intera</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">Two revisions</span><span lang="it">Due revisioni</span></h4>
+      <p><span lang="en">Rev A fixed the part: a standard Tr 52×8-7H thread, Ø25 H7 guides, a G 1/4 nozzle port and pockets to cut weight. The DFMEA then showed the concept itself failed, so Rev B turns the nut into a carriage.</span><span lang="it">La Rev A ha corretto il pezzo: filettatura normalizzata Tr 52×8-7H, guide Ø25 H7, attacco ugello G 1/4 e tasche di alleggerimento. La DFMEA ha poi mostrato che era il concetto a non funzionare, quindi la Rev B trasforma la madrevite in un carrello.</span></p>
+      <ul>
+        <li><span lang="en">Marine-grade EN AW-5083-H111, 5.14 kg instead of 9.1 kg.</span><span lang="it">Lega marina EN AW-5083-H111, 5,14 kg invece di 9,1 kg.</span></li>
+        <li><span lang="en">Ø110 H7 seats for a 7014 angular-contact pair carrying the rotating nut.</span><span lang="it">Sedi Ø110 H7 per una coppia di cuscinetti obliqui 7014 che porta la madrevite rotante.</span></li>
+        <li><span lang="en">Open Ø40 H7 bushing bores for supported rails, four Ø12 H7 roller axles that take the jet reaction.</span><span lang="it">Fori Ø40 H7 per boccole aperte su guide supportate, quattro assi rulli Ø12 H7 che assorbono la reazione del getto.</span></li>
+        <li><span lang="en">All precision bores machined in one setup; anodised with the fits masked.</span><span lang="it">Tutti i fori di precisione lavorati in un solo piazzamento; anodizzato con gli accoppiamenti mascherati.</span></li>
+      </ul>
+      <div class="chips"><span class="chip">ISO 2901</span><span class="chip">ISO 228-1</span><span class="chip">position</span><span class="chip">machining</span></div>
+      <p class="ask"><a href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached."><span lang="en">Have a part like this? Send it over →</span><span lang="it">Hai un pezzo simile? Mandamelo →</span></a></p>
+    </div>
+  </div>
+</section>
+
+<section id="mb-006">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-006 · Rev A</span><h3><span lang="en">Vertical axis DFMEA</span><span lang="it">DFMEA asse verticale</span></h3></div>
+    <p class="ctx"><span lang="en">AIAG-VDA (2019) design FMEA with Action Priority. 13 failure chains on the original concept.</span><span lang="it">FMEA di progetto AIAG-VDA (2019) con Action Priority. 13 catene di guasto sul concetto originale.</span></p>
+    <div class="sheets2">
+      <a class="sheet" href="mb006a.jpg" target="_blank" rel="noopener"><img src="mb006a.jpg" alt="MB-006 DFMEA sheet 1" loading="lazy" width="2000" height="1414"></a>
+      <a class="sheet" href="mb006b.jpg" target="_blank" rel="noopener"><img src="mb006b.jpg" alt="MB-006 DFMEA sheet 2" loading="lazy" width="2000" height="1414"></a>
+    </div>
+    <div class="text">
+      <h4><span lang="en">Action Priority, 13 failure chains</span><span lang="it">Action Priority, 13 catene di guasto</span></h4>
+      <div class="ap" role="img" aria-label="Before actions: 4 high, 2 medium, 7 low. After actions: 13 low.">
+        <div class="row"><span lang="en">Before</span><span lang="it">Prima</span><div class="bar13"><i class="H" style="width:30.77%"></i><i class="M" style="width:15.38%"></i><i class="L" style="width:53.85%"></i></div></div>
+        <div class="row"><span lang="en">After</span><span lang="it">Dopo</span><div class="bar13"><i class="L" style="width:100%"></i></div></div>
+        <div class="legend"><span class="h">H 4 → 0</span><span class="m">M 2 → 0</span><span class="l">L 7 → 13</span></div>
+      </div>
+      <p><span lang="en">The four high-priority risks were screw whirl, guide-rod deflection under the jet, nozzle blow-out at 250 bar and high-pressure hose burst. Each action points to a feature in MB-004 Rev B or MB-005. The seven open actions are designed and marked “test pending”, because only a test closes them.</span><span lang="it">I quattro rischi ad alta priorità erano la risonanza flessionale della vite, la flessione delle guide sotto il getto, l’espulsione dell’ugello a 250 bar e lo scoppio del tubo ad alta pressione. Ogni azione rimanda a una caratteristica di MB-004 Rev B o MB-005. Le sette azioni aperte sono progettate e indicate come “test da eseguire”, perché solo una prova le chiude.</span></p>
+      <div class="chips"><span class="chip">AIAG-VDA 2019</span><span class="chip">S / O / D</span><span class="chip">Action Priority</span><span class="chip">Excel + PDF</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="mb-007">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-007 · Rev A</span><h3><span lang="en">Tolerance stack-up</span><span lang="it">Catene di tolleranze</span></h3></div>
+    <p class="ctx"><span lang="en">Can the drawn tolerances on MB-004 and MB-005 hold the bearing preload? Worst case, RSS and Monte Carlo on the real drawing values.</span><span lang="it">Le tolleranze disegnate su MB-004 e MB-005 riescono a garantire il precarico dei cuscinetti? Caso peggiore, RSS e Monte Carlo sui valori reali delle tavole.</span></p>
+    <div>
+      <a class="sheet" href="mb007.jpg" target="_blank" rel="noopener"><img src="mb007.jpg" alt="MB-007 tolerance stack-up calculation sheet" loading="lazy" width="2000" height="1414"></a>
+      <div class="ba-note"><span lang="en">Axial preload chain and radial clearance chain</span><span lang="it">Catena assiale del precarico e catena radiale del gioco</span><a href="mb007.pdf" target="_blank" rel="noopener"><span lang="en">Open PDF</span><span lang="it">Apri il PDF</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">The finding</span><span lang="it">Il risultato</span></h4>
+      <ul>
+        <li><span lang="en">As drawn, only 4.3 % of assemblies reach the 0.03 mm preload window.</span><span lang="it">Come disegnato, solo il 4,3 % dei montaggi rientra nella finestra di precarico di 0,03 mm.</span></li>
+        <li><span lang="en">Tightening the machined parts to ±0.02 only reaches 31.8 %: bearing width tolerance dominates.</span><span lang="it">Stringere le parti lavorate a ±0,02 porta solo al 31,8 %: domina la tolleranza di larghezza dei cuscinetti.</span></li>
+        <li><span lang="en">Adopted: measure at assembly and grind one shim. All assemblies land in the window, and MB-004 stays as drawn.</span><span lang="it">Soluzione adottata: misura al montaggio e rettifica di uno spessore. Tutti i montaggi rientrano nella finestra e MB-004 resta com’è.</span></li>
+        <li><span lang="en">Radial chain at the bottom steady passes: 0.445 mm worst case against 1 mm clearance.</span><span lang="it">La catena radiale alla lunetta inferiore è verificata: 0,445 mm nel caso peggiore contro 1 mm di gioco.</span></li>
+      </ul>
+      <p><span lang="en">Preload window and bushing bore are assumptions, marked on the sheet.</span><span lang="it">La finestra di precarico e il foro della boccola sono ipotesi, indicate sul foglio.</span></p>
+      <div class="chips"><span class="chip"><span lang="en">worst case</span><span lang="it">caso peggiore</span></span><span class="chip">RSS</span><span class="chip">Monte Carlo</span><span class="chip">ISO 492</span><span class="chip">ISO 2768</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="mb-005-02">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-005-02 · Rev A</span><h3><span lang="en">Rotating nut</span><span lang="it">Madrevite rotante</span></h3></div>
+    <p class="ctx"><span lang="en">Item 2 of MB-005, turning on the 7014 bearing pair. Its clamp length comes straight from stack-up MB-007.</span><span lang="it">Posizione 2 di MB-005, ruota sulla coppia di cuscinetti 7014. La lunghezza di serraggio deriva direttamente dalla catena di tolleranze MB-007.</span></p>
+    <div>
+      <a class="sheet" href="mb005_02.jpg" target="_blank" rel="noopener"><img src="mb005_02.jpg" alt="MB-005-02 rotating nut drawing, section and end views" loading="lazy" width="2000" height="1414"></a>
+      <div class="ba-note"><span lang="en">Section 2:1, end views 1:1</span><span lang="it">Sezione 2:1, viste 1:1</span><a href="mb005_02.pdf" target="_blank" rel="noopener"><span lang="en">Open PDF</span><span lang="it">Apri il PDF</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">What it controls</span><span lang="it">Cosa controlla</span></h4>
+      <ul><li><span lang="en">Clamp length 97.5 mm, so the preload shim is always positive.</span><span lang="it">Lunghezza di serraggio 97,5 mm, così lo spessore di precarico è sempre positivo.</span></li><li><span lang="en">Bearing seats Ø70 js5 with cylindricity 0.004 and a common datum A-B.</span><span lang="it">Sedi cuscinetto Ø70 js5 con cilindricità 0,004 e riferimento comune A-B.</span></li><li><span lang="en">Flange face total run-out 0.008: it seats the lower inner ring.</span><span lang="it">Oscillazione totale 0,008 sulla faccia della flangia: appoggia l’anello interno inferiore.</span></li><li><span lang="en">Tr 52×8-7H over 80 mm, positioned Ø0.05 to A-B.</span><span lang="it">Tr 52×8-7H su 80 mm, posizione Ø0,05 rispetto ad A-B.</span></li></ul>
+      <div class="chips"><span class="chip">CuSn12</span><span class="chip">js5</span><span class="chip">ISO 2901</span><span class="chip"><span lang="en">total run-out</span><span lang="it">oscillazione totale</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="mb-002">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-002 · Rev A</span><h3><span lang="en">Bearing housing</span><span lang="it">Supporto cuscinetto</span></h3></div>
+    <p class="ctx"><span lang="en">Milled 6082-T6 housing for a Ø30 H7 bearing, flange-mounted on two lugs.</span><span lang="it">Supporto fresato in 6082-T6 per cuscinetto Ø30 H7, fissato su due alette.</span></p>
+    <div>
+      <div class="ba" data-ba>
+        <img src="before_mb002.jpg" alt="MB-002 original drawing" loading="lazy">
+        <img class="after" src="mb002.jpg" alt="MB-002 Rev A drawing" loading="lazy">
+        <span class="handle"></span><span class="tag l"><span lang="en">Before</span><span lang="it">Prima</span></span><span class="tag r">Rev A</span>
+        <input type="range" id="ba-002" min="0" max="100" value="50" aria-label="Compare before and after">
+      </div>
+      <div class="ba-note"><span lang="en">Drag to compare</span><span lang="it">Trascina per confrontare</span><a href="mb002.jpg" data-zoom target="_blank" rel="noopener"><span lang="en">Open full sheet</span><span lang="it">Apri la tavola intera</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">What changed</span><span lang="it">Cosa è cambiato</span></h4>
+      <ul>
+        <li><span lang="en">M5 pitch circle moved from Ø38 to Ø42: the wall between the tapped holes and the Ø30 bore grows from 1.5 mm to 3.5 mm.</span><span lang="it">Circonferenza dei fori M5 portata da Ø38 a Ø42: la parete tra i fori filettati e il foro Ø30 passa da 1,5 a 3,5 mm.</span></li>
+        <li><span lang="en">Ø7.7 H12 holes replaced by Ø8 H7 dowel holes, so the housing actually locates.</span><span lang="it">Fori Ø7,7 H12 sostituiti da fori per spine Ø8 H7, così il supporto si posiziona davvero.</span></li>
+        <li><span lang="en">Datum A as a common zone (CZ) on both lug faces; concentricity replaced by run-out and position.</span><span lang="it">Riferimento A come zona comune (CZ) sulle due facce d’appoggio; la concentricità è sostituita da oscillazione e posizione.</span></li>
+        <li><span lang="en">Countersinks, surface texture and revision table added.</span><span lang="it">Aggiunti svasature, rugosità e tabella revisioni.</span></li>
+      </ul>
+      <h4><span lang="en">Skills shown</span><span lang="it">Competenze</span></h4>
+      <div class="chips"><span class="chip">ISO 5459</span><span class="chip">ISO 14405 Ⓔ</span><span class="chip">common zone</span><span class="chip">TED</span><span class="chip">section views</span></div>
+      <p class="ask"><a href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached."><span lang="en">Have a part like this? Send it over →</span><span lang="it">Hai un pezzo simile? Mandamelo →</span></a></p>
+    </div>
+  </div>
+</section>
+
+<section id="mb-001">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-001 · Rev A</span><h3><span lang="en">Gear shaft</span><span lang="it">Albero dentato</span></h3></div>
+    <p class="ctx"><span lang="en">Case-hardened spur pinion shaft, m 2, z 18, between two Ø15 k6 bearing seats.</span><span lang="it">Albero pignone a denti diritti cementato, m 2, z 18, tra due sedi cuscinetto Ø15 k6.</span></p>
+    <div>
+      <div class="ba" data-ba>
+        <img src="before_mb001.jpg" alt="MB-001 original drawing" loading="lazy">
+        <img class="after" src="mb001.jpg" alt="MB-001 Rev A drawing" loading="lazy">
+        <span class="handle"></span><span class="tag l"><span lang="en">Before</span><span lang="it">Prima</span></span><span class="tag r">Rev A</span>
+        <input type="range" id="ba-001" min="0" max="100" value="50" aria-label="Compare before and after">
+      </div>
+      <div class="ba-note"><span lang="en">Drag to compare</span><span lang="it">Trascina per confrontare</span><a href="mb001.jpg" data-zoom target="_blank" rel="noopener"><span lang="en">Open full sheet</span><span lang="it">Apri la tavola intera</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">What changed</span><span lang="it">Cosa è cambiato</span></h4>
+      <ul>
+        <li><span lang="en">Complete gear data block: module, pressure angle, profile shift, ISO 1328-1 class 8, base tangent length W (k = 3) for inspection.</span><span lang="it">Tabella dati dentatura completa: modulo, angolo di pressione, spostamento di profilo, classe 8 ISO 1328-1, quota Wildhaber W (k = 3) per il controllo.</span></li>
+        <li><span lang="en">Tip diameter corrected from Ø41 to Ø40 h11 (d + 2m).</span><span lang="it">Diametro di testa corretto da Ø41 a Ø40 h11 (d + 2m).</span></li>
+        <li><span lang="en">DIN 509 undercuts so the k6 seats can be ground; envelope requirement Ⓔ and run-out to the common axis A-B.</span><span lang="it">Gole DIN 509 per la rettifica delle sedi k6; requisito d’inviluppo Ⓔ e oscillazione rispetto all’asse comune A-B.</span></li>
+        <li><span lang="en">Case-hardened zones marked to ISO 15787 (CHD 0.8 +0.3 mm at 550 HV1), centre holes kept at both ends.</span><span lang="it">Zone cementate indicate secondo ISO 15787 (CHD 0,8 +0,3 mm a 550 HV1), centri conservati alle due estremità.</span></li>
+      </ul>
+      <h4><span lang="en">Skills shown</span><span lang="it">Competenze</span></h4>
+      <div class="chips"><span class="chip">ISO 1101</span><span class="chip">ISO 2203</span><span class="chip">ISO 15787</span><span class="chip">ISO 21920-1</span><span class="chip">gear geometry</span></div>
+      <p class="ask"><a href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached."><span lang="en">Have a part like this? Send it over →</span><span lang="it">Hai un pezzo simile? Mandamelo →</span></a></p>
+    </div>
+  </div>
+</section>
+
+<section id="mb-008">
+  <div class="wrap proj">
+    <div class="proj-head"><span class="mono">MB-008 · Rev B</span><h3><span lang="en">Door harness</span><span lang="it">Cablaggio porta</span></h3></div>
+    <p class="ctx"><span lang="en">A fictional automotive door harness in the working format of harness engineering. It contains no customer data.</span><span lang="it">Un cablaggio porta automotive fittizio, nel formato di lavoro dell’ingegneria cablaggi. Non contiene dati di clienti.</span></p>
+    <div>
+      <a class="sheet" href="mb008.jpg" target="_blank" rel="noopener"><img src="mb008.jpg" alt="MB-008 generic door harness formboard with wire list" loading="lazy" width="2000" height="1414"></a>
+      <div class="ba-note"><span lang="en">Formboard, wire list, connector and bundle tables</span><span lang="it">Formboard, lista fili, tabelle connettori e fasci</span><a href="mb008.pdf" target="_blank" rel="noopener"><span lang="en">Open PDF</span><span lang="it">Apri il PDF</span></a></div>
+    </div>
+    <div class="text">
+      <h4><span lang="en">What it shows</span><span lang="it">Cosa mostra</span></h4>
+      <ul><li><span lang="en">22 circuits routed over 11 bundle segments, with every wire length summed from its route.</span><span lang="it">22 circuiti su 11 segmenti di fascio, con la lunghezza di ogni filo sommata lungo il percorso.</span></li><li><span lang="en">Bundle diameters and conduit sizes calculated from the wires inside.</span><span lang="it">Diametri dei fasci e dimensioni delle guaine calcolati dai fili contenuti.</span></li><li><span lang="en">Change CR-0042 implemented as Rev B: new circuits flagged, affected bundles re-sized.</span><span lang="it">Modifica CR-0042 implementata come Rev B: nuovi circuiti segnalati, fasci interessati ridimensionati.</span></li><li><span lang="en">Window motor voltage drop: 0.21 V at 15 A against a 0.60 V limit.</span><span lang="it">Caduta di tensione motore alzacristallo: 0,21 V a 15 A contro un limite di 0,60 V.</span></li></ul>
+      <p><span lang="en">A generic example based on general industry practice. Design values are marked as assumptions.</span><span lang="it">Esempio generico basato sulla pratica generale del settore. I valori di progetto sono indicati come ipotesi.</span></p>
+      <div class="chips"><span class="chip">ISO 6722-1</span><span class="chip">FLRY-B</span><span class="chip"><span lang="en">wire list</span><span lang="it">lista fili</span></span><span class="chip"><span lang="en">change management</span><span lang="it">gestione modifiche</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2><span lang="en">About</span><span lang="it">Profilo</span></h2><span class="label">CV</span></div>
+    <div class="about">
+      <div>
+        <p><span lang="en">I am a mechanical engineer (Engineering School of Monastir, 2025) now on the MSc in Mechanical Engineering at the University of Cassino and Southern Lazio. At Kromberg &amp; Schubert I implemented AUDI change requests on harness drawings for the A3, A2 e-tron and Q5 programmes, delivering 2–3 changes a week through six release milestones.</span><span lang="it">Sono ingegnere meccanico (Scuola di Ingegneria di Monastir, 2025) e frequento la laurea magistrale in Ingegneria Meccanica all’Università di Cassino e del Lazio Meridionale. In Kromberg &amp; Schubert ho implementato richieste di modifica AUDI sui disegni dei cablaggi per i programmi A3, A2 e-tron e Q5, con 2–3 modifiche a settimana attraverso sei milestone di rilascio.</span></p>
+        <p><span lang="en">My final-year project for STEG (Radès power plant) was an automatic cleaning system for seawater basins. Three of the sheets below come from it. I took them further here: proper sheet-metal design, marine-grade materials, a full DFMEA and a redesigned vertical axis.</span><span lang="it">Il mio progetto di fine studi per STEG (centrale di Radès) era un sistema automatico di pulizia delle vasche di acqua di mare. Tre delle tavole qui sotto vengono da quel progetto. Qui le ho portate oltre: vera progettazione in lamiera, materiali per ambiente marino, una DFMEA completa e un asse verticale riprogettato.</span></p>
+        <p><span lang="en">Available for freelance work on 2D drawings, GD&amp;T, design reviews and SolidWorks models.</span><span lang="it">Disponibile per lavori freelance su disegni 2D, GD&amp;T, revisioni di progetto e modelli SolidWorks.</span></p>
+      </div>
+      <dl class="cv">
+        <dt>CAD</dt><dd>SolidWorks (CSWP, CSWA), CATIA V5 (<span lang="en">basic</span><span lang="it">base</span>), Capital Harness ELDorado</dd>
+        <dt><span lang="en">Tolerancing</span><span lang="it">Tolleranze</span></dt><dd><span lang="en">GD&amp;T / ISO GPS, stack-ups, metrology</span><span lang="it">GD&amp;T / ISO GPS, catene di tolleranze, metrologia</span></dd>
+        <dt><span lang="en">Analysis</span><span lang="it">Analisi</span></dt><dd>SolidWorks Simulation, DFMEA (AIAG-VDA), MATLAB, Python</dd>
+        <dt><span lang="en">Manufacturing</span><span lang="it">Produzione</span></dt><dd><span lang="en">CNC (Mastercam, CIMCO), sheet metal, lean, SPC</span><span lang="it">CNC (Mastercam, CIMCO), lamiera, lean, SPC</span></dd>
+        <dt><span lang="en">Languages</span><span lang="it">Lingue</span></dt><dd><span lang="en">Arabic (native), French (bilingual), English (B2, IELTS 6.5), Italian (learning)</span><span lang="it">Arabo (madrelingua), francese (bilingue), inglese (B2, IELTS 6.5), italiano (in apprendimento)</span></dd>
+        <dt><span lang="en">Education</span><span lang="it">Formazione</span></dt><dd><span lang="en">MSc Mechanical Eng., UNICAS (2026–2028) · Mechanical Engineering Diploma, ENIM (2025)</span><span lang="it">LM Ingegneria Meccanica, UNICAS (2026–2028) · Diploma di Ingegnere Meccanico, ENIM (2025)</span></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2><span lang="en">Get a quote</span><span lang="it">Chiedi un preventivo</span></h2>
+      <p><span lang="en">Send a sketch, an old drawing or a model and say what you need. I reply within 24 hours with a fixed quote and a delivery date.</span><span lang="it">Manda uno schizzo, un vecchio disegno o un modello e dimmi cosa ti serve. Rispondo entro 24 ore con un preventivo fisso e una data di consegna.</span></p>
+      <div class="dl">
+        <a class="pri" href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached."><span lang="en">Send me your drawing</span><span lang="it">Mandami il tuo disegno</span></a>
+        <a href="Mahdi_Bachraoui_Portfolio_EN.pdf" download lang="en">Portfolio (PDF)</a><a href="Mahdi_Bachraoui_Portfolio_IT.pdf" download lang="it">Portfolio (PDF)</a>
+        <a href="Mahdi_Bachraoui_CV.pdf" target="_blank" rel="noopener">CV</a> <a href="https://www.linkedin.com/in/mahdibachraoui/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+
+    </div>
+    <div>
+      <div class="cline"><a class="v" id="c-mail" href="mailto:bachraouimahdi@gmail.com?subject=Drawing%20request&amp;body=Hi%20Mahdi%2C%0A%0AWhat%20I%20have%20(sketch%20%2F%20old%20drawing%20%2F%20model)%3A%0AWhat%20I%20need%20(3D%20model%20%2F%202D%20drawing%20%2F%20review)%3A%0ADeadline%3A%0A%0AFiles%20attached.">bachraouimahdi@gmail.com</a><button class="copy" type="button" id="cp-mail" data-t="c-mail"><span lang="en">Copy</span><span lang="it">Copia</span></button></div>
+      <div class="cline"><a class="v" id="c-tel" href="tel:+393894972758">+39 389 4972758</a><button class="copy" type="button" id="cp-tel" data-t="c-tel"><span lang="en">Copy</span><span lang="it">Copia</span></button></div>
+      <div class="cline"><span class="label"><span lang="en">Based in</span><span lang="it">Sede</span></span><span><span lang="en">Lazio, Italy · remote worldwide</span><span lang="it">Lazio, Italia · da remoto ovunque</span></span></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span lang="en">All drawings by Mahdi Bachraoui. MB-003 to MB-007 build on the final-year project for STEG, ENIM 2025.</span><span lang="it">Tutte le tavole sono di Mahdi Bachraoui. Le tavole da MB-003 a MB-007 sviluppano il progetto di fine studi per STEG, ENIM 2025.</span></div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function setLang(l){
+    root.setAttribute('data-lang',l); root.lang=l;
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.l===l))});
+    try{localStorage.setItem('mb-lang',l)}catch(e){}
+  }
+  var start='en';
+  if(location.hash==='#it') start='it';
+  else { try{var s=localStorage.getItem('mb-lang'); if(s==='it'||s==='en') start=s;}catch(e){}
+       }
+  setLang(start);
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
+  document.querySelectorAll('[data-ba]').forEach(function(box){
+    var r=box.querySelector('input');
+    function upd(){box.style.setProperty('--pos',r.value+'%')}
+    r.addEventListener('input',upd); upd();
+  });
+  var dlg=document.createElement('dialog'); dlg.className='zoom';
+  dlg.innerHTML='<div class="pane"><img alt=""></div><button class="x" type="button">✕</button><span class="hint"></span>';
+  document.body.appendChild(dlg);
+  var zi=dlg.querySelector('img'), pane=dlg.querySelector('.pane');
+  function hint(){var it=root.getAttribute('data-lang')==='it', big=dlg.classList.contains('big');
+    dlg.querySelector('.hint').textContent=big?(it?'Tocca per adattare':'Tap to fit'):(it?'Tocca per ingrandire':'Tap to zoom');
+    dlg.querySelector('.x').setAttribute('aria-label',it?'Chiudi':'Close')}
+  if(dlg.showModal){
+    document.querySelectorAll('a.sheet[href$=".jpg"],a[data-zoom]').forEach(function(a){
+      a.addEventListener('click',function(e){
+        if(e.ctrlKey||e.metaKey||e.shiftKey) return;
+        e.preventDefault(); zi.src=a.getAttribute('href'); var im=a.querySelector('img'); zi.alt=im?im.alt:a.textContent.trim();
+        dlg.classList.remove('big'); hint(); dlg.showModal();
+      });
+    });
+    zi.addEventListener('click',function(e){
+      var r=zi.getBoundingClientRect(), fx=(e.clientX-r.left)/r.width, fy=(e.clientY-r.top)/r.height;
+      dlg.classList.toggle('big'); hint();
+      if(dlg.classList.contains('big')){pane.scrollLeft=fx*zi.offsetWidth-pane.clientWidth/2; pane.scrollTop=fy*zi.offsetHeight-pane.clientHeight/2}
+    });
+    dlg.querySelector('.x').addEventListener('click',function(){dlg.close()});
+    pane.addEventListener('click',function(e){if(e.target===pane) dlg.close()});
+  }
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var el=document.getElementById(b.dataset.t), txt=el.textContent, old=b.innerHTML;
+      function done(){b.textContent=root.getAttribute('data-lang')==='it'?'Copiato':'Copied';setTimeout(function(){b.innerHTML=old},1600)}
+      function sel(){var rg=document.createRange();rg.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(rg)}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,sel)}else sel();
+    });
+  });
+})();
+</script>
+</body>
+</html>
